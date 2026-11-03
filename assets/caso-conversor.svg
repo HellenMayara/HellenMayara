@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="350" viewBox="0 0 280 350">
+  <!-- ARQUIVO H.M. — CASO 03: Conversor de moedas -->
+  <defs>
+    <filter id="sombra" x="-10%" y="-10%" width="125%" height="130%">
+      <feDropShadow dx="2" dy="4" stdDeviation="4" flood-color="#000" flood-opacity=".5"/>
+    </filter>
+  </defs>
+  <style>
+    text { font-family: 'Courier New', Courier, monospace; }
+    .centro { transform-box: fill-box; transform-origin: center; }
+    /* valor digitado: cada versão aparece na sua fatia do ciclo */
+    .v0 { opacity: 0; animation: v0 8s steps(1) infinite; }
+    @keyframes v0 { 4% { opacity: 1; } 11% { opacity: 0; } }
+    .v1 { opacity: 0; animation: v1 8s steps(1) infinite; }
+    @keyframes v1 { 11% { opacity: 1; } 18% { opacity: 0; } }
+    .v2 { opacity: 0; animation: v2 8s steps(1) infinite; }
+    @keyframes v2 { 18% { opacity: 1; } 25% { opacity: 0; } }
+    .v3 { opacity: 0; animation: v3 8s steps(1) infinite; }
+    @keyframes v3 { 25% { opacity: 1; } 32% { opacity: 0; } }
+    .v4 { opacity: 0; animation: v4 8s steps(1) infinite; }
+    @keyframes v4 { 32% { opacity: 1; } 96% { opacity: 0; } }
+    /* botão de inverter girando */
+    .gira { transform-box: fill-box; transform-origin: center; animation: gira 8s ease-in-out infinite; }
+    @keyframes gira { 0%, 42% { transform: rotate(0); } 50%, 100% { transform: rotate(180deg); } }
+    /* "buscando cotação..." */
+    .busca { opacity: 0; animation: busca 8s steps(1) infinite; }
+    @keyframes busca { 50% { opacity: 1; } 62% { opacity: 0; } }
+    .ponto { animation: ponto .6s infinite; }
+    .ponto:nth-child(2) { animation-delay: .2s; } .ponto:nth-child(3) { animation-delay: .4s; }
+    @keyframes ponto { 50% { opacity: .2; } }
+    /* resultado chegando */
+    .resultado { opacity: 0; animation: resultado 8s infinite; }
+    @keyframes resultado { 0%, 62% { opacity: 0; transform: translateY(6px); } 66%, 96% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+    /* carimbo batendo uma vez a cada ciclo de 8s */
+    .carimbo { animation: carimbo 8s infinite; }
+    @keyframes carimbo {
+      0%, 8% { opacity: 0; transform: rotate(-12deg) scale(1.8); }
+      11% { opacity: .9; transform: rotate(-12deg) scale(.95); }
+      13%, 100% { opacity: .9; transform: rotate(-12deg) scale(1); }
+    }
+    .seta { animation: seta 1.6s ease-in-out infinite; }
+    @keyframes seta { 50% { transform: translateX(5px); } }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+  </style>
+
+  <!-- pasta do caso -->
+  <rect width="280" height="350" rx="10" fill="#17191c"/>
+  <rect x=".5" y=".5" width="279" height="349" rx="10" fill="none" stroke="#2f3338"/>
+  <text x="20" y="27" font-size="11" font-weight="700" fill="#b3261e" letter-spacing="2">ARQUIVO H.M. · CASO 03</text>
+
+  <!-- foto da cena -->
+  <g filter="url(#sombra)"><rect x="20" y="40" width="240" height="170" fill="#ece6d8"/></g>
+  <!-- app do conversor -->
+  <g transform="translate(-34,-8) rotate(-3 140 125)">
+    <rect x="60" y="50" width="160" height="152" rx="10" fill="#24272b" stroke="#0e0f11" stroke-width="2"/>
+    <text x="74" y="70" font-size="10" fill="#8f897d" letter-spacing="1">VALOR · BRL</text>
+    <rect x="72" y="76" width="136" height="28" rx="4" fill="#ece6d8"/>
+    <text x="80" y="95" font-size="11" fill="#6b5d48">R$</text>
+    <g font-size="15" font-weight="700" fill="#1f1a12" text-anchor="end">
+      <text class="v0" x="200" y="96">0,01</text><text class="v1" x="200" y="96">0,12</text><text class="v2" x="200" y="96">1,23</text><text class="v3" x="200" y="96">12,34</text><text class="v4" x="200" y="96">123,45</text>
+    </g>
+    <!-- botão de inverter -->
+    <circle cx="140" cy="122" r="11" fill="#b3261e"/>
+    <g class="gira"><path d="M134,119 h11 l-3,-3 M146,125 h-11 l3,3" fill="none" stroke="#f4e9e2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <text x="74" y="150" font-size="10" fill="#8f897d" letter-spacing="1">RESULTADO · USD</text>
+    <rect x="72" y="156" width="136" height="32" rx="4" fill="#1a1d21" stroke="#3a3e44"/>
+    <g class="busca" font-size="18" font-weight="700" fill="#8f897d"><text x="128" y="178"><tspan class="ponto">.</tspan><tspan class="ponto">.</tspan><tspan class="ponto">.</tspan></text></g>
+    <text class="resultado" x="200" y="178" text-anchor="end" font-size="15" font-weight="700" fill="#e0a43a">US$ 22,45</text>
+  </g>
+
+  <!-- carimbo -->
+  <g class="carimbo centro">
+    <rect x="144" y="172" width="118" height="28" rx="3" fill="#17191c" fill-opacity=".6" stroke="#d0443a" stroke-width="2.5"/>
+    <text x="203" y="191" text-anchor="middle" font-size="13" font-weight="700" fill="#d0443a" letter-spacing="1">ENCERRADO</text>
+  </g>
+
+  <!-- ficha -->
+  <text x="20" y="240" font-size="17" font-weight="700" fill="#efe7d4">Conversor de moedas</text>
+  <text x="20" y="262" font-size="11.5" fill="#a9a399">10 moedas com cotação em tempo</text><text x="20" y="278" font-size="11.5" fill="#a9a399">real, consumindo uma API.</text>
+  <rect x="20" y="302" width="43" height="20" rx="3" fill="none" stroke="#5b5f66"/><text x="27" y="316" font-size="11" fill="#d8d2c4">HTML</text><rect x="68.8" y="302" width="36" height="20" rx="3" fill="none" stroke="#5b5f66"/><text x="75.8" y="316" font-size="11" fill="#d8d2c4">CSS</text><rect x="110.4" y="302" width="28" height="20" rx="3" fill="none" stroke="#5b5f66"/><text x="117.4" y="316" font-size="11" fill="#d8d2c4">JS</text><rect x="144.8" y="302" width="36" height="20" rx="3" fill="none" stroke="#5b5f66"/><text x="151.8" y="316" font-size="11" fill="#d8d2c4">API</text>
+  <text x="20" y="340" font-size="11" fill="#7d8188">clique para abrir o caso</text>
+  <text class="seta" x="250" y="340" font-size="12" fill="#b3261e">→</text>
+</svg>

@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="280" height="350" viewBox="0 0 280 350">
-  <!-- ARQUIVO H.M. — CASO 03: Página pessoal -->
+  <!-- ARQUIVO H.M. — CASO 04: Página pessoal -->
   <defs>
     <filter id="sombra" x="-10%" y="-10%" width="125%" height="130%">
       <feDropShadow dx="2" dy="4" stdDeviation="4" flood-color="#000" flood-opacity=".5"/>
@@ -32,7 +32,7 @@
   <!-- pasta do caso -->
   <rect width="280" height="350" rx="10" fill="#17191c"/>
   <rect x=".5" y=".5" width="279" height="349" rx="10" fill="none" stroke="#2f3338"/>
-  <text x="20" y="27" font-size="11" font-weight="700" fill="#b3261e" letter-spacing="2">ARQUIVO H.M. · CASO 03</text>
+  <text x="20" y="27" font-size="11" font-weight="700" fill="#b3261e" letter-spacing="2">ARQUIVO H.M. · CASO 04</text>
 
   <!-- foto da cena -->
   <g filter="url(#sombra)"><rect x="20" y="40" width="240" height="170" fill="#ece6d8"/></g>

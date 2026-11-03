@@ -10,7 +10,7 @@
 
 <!-- 🧵 CRONOLOGIA DO CASO -->
 <p align="center">
-  <img src="./assets/cronologia.svg" width="100%" alt="Cronologia: Riachuelo em 2014, Ramos e Silva em 2020, prêmio Best the Best em 2021, início em Sistemas de Informação em 2024, cursos na Alura em 2026, primeiros projetos, página pessoal em construção e a próxima pista: estágio ou analista de suporte"/>
+  <img src="./assets/cronologia.svg" width="100%" alt="Cronologia: Riachuelo em 2014, Ramos e Silva em 2020, prêmio Best the Best em 2021, início em Sistemas de Informação em 2024, cursos na Alura em 2026, primeiros projetos (calculadora, lista de tarefas e conversor de moedas), página pessoal em construção e a próxima pista: estágio ou analista de suporte"/>
 </p>
 
 <!-- 🧪 PROVAS COLETADAS -->
@@ -20,9 +20,12 @@
 
 <!-- 📁 CASOS INVESTIGADOS -->
 <p align="center">
-  <a href="https://github.com/HellenMayara/calculadora"><img src="./assets/caso-calculadora.svg" width="280" alt="Caso 01: Calculadora"/></a>
-  <a href="https://github.com/HellenMayara/lista-de-tarefas"><img src="./assets/caso-tarefas.svg" width="280" alt="Caso 02: Lista de tarefas"/></a>
-  <img src="./assets/caso-portfolio.svg" width="280" alt="Caso 03: Página pessoal, em andamento"/>
+  <a href="https://github.com/HellenMayara/calculadora"><img src="./assets/caso-calculadora.svg" width="380" alt="Caso 01: Calculadora"/></a>
+  <a href="https://github.com/HellenMayara/lista-de-tarefas"><img src="./assets/caso-tarefas.svg" width="380" alt="Caso 02: Lista de tarefas"/></a>
+</p>
+<p align="center">
+  <a href="https://github.com/HellenMayara/conversor-de-moedas"><img src="./assets/caso-conversor.svg" width="380" alt="Caso 03: Conversor de moedas"/></a>
+  <img src="./assets/caso-portfolio.svg" width="380" alt="Caso 04: Página pessoal, em andamento"/>
 </p>
 
 <!-- 🔬 RELATÓRIO DA PERÍCIA (gerado sozinho pelo GitHub Actions, ver .github/workflows/pericia.yml) -->
