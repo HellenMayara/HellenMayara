@@ -1,0 +1,249 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500">
+  <!--
+    ARQUIVO H.M. — PROVAS COLETADAS
+    Cada tecnologia é uma prova lacrada num saco de evidência.
+    Os sacos caem na mesa um a um e uma lupa examina tudo. Ciclo de 16s.
+  -->
+  <defs>
+    <filter id="mesa" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="5" result="r"/>
+      <feColorMatrix in="r" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .05 0" result="g"/>
+      <feComposite in="g" in2="SourceGraphic" operator="in" result="g2"/>
+      <feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="g2"/></feMerge>
+    </filter>
+    <filter id="sombra" x="-10%" y="-10%" width="125%" height="130%">
+      <feDropShadow dx="3" dy="6" stdDeviation="5" flood-color="#000" flood-opacity=".55"/>
+    </filter>
+    <radialGradient id="luminaria" cx=".5" cy=".35" r=".8">
+      <stop offset="0" stop-color="#fff4d6" stop-opacity=".10"/>
+      <stop offset=".6" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".65"/>
+    </radialGradient>
+    <radialGradient id="lente" cx=".4" cy=".35" r=".7">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#bfe3ff" stop-opacity=".06"/>
+    </radialGradient>
+  </defs>
+
+  <style>
+    text { font-family: 'Courier New', Courier, monospace; }
+    .saco { transform-box: fill-box; transform-origin: center; }
+
+    /* Sacos caindo na mesa, um depois do outro */
+    .p0 { animation: p0 16s infinite; }
+    @keyframes p0 { 0%, 2.50% { opacity: 0; transform: translateY(-40px) scale(1.08); } 4.38% { opacity: 1; transform: translateY(2px) scale(1); } 5.38%, 96% { opacity: 1; transform: none; } 100% { opacity: 0; transform: none; } }
+    .p1 { animation: p1 16s infinite; }
+    @keyframes p1 { 0%, 5.31% { opacity: 0; transform: translateY(-40px) scale(1.08); } 7.19% { opacity: 1; transform: translateY(2px) scale(1); } 8.19%, 96% { opacity: 1; transform: none; } 100% { opacity: 0; transform: none; } }
+    .p2 { animation: p2 16s infinite; }
+    @keyframes p2 { 0%, 8.12% { opacity: 0; transform: translateY(-40px) scale(1.08); } 10.00% { opacity: 1; transform: translateY(2px) scale(1); } 11.00%, 96% { opacity: 1; transform: none; } 100% { opacity: 0; transform: none; } }
+    .p3 { animation: p3 16s infinite; }
+    @keyframes p3 { 0%, 10.94% { opacity: 0; transform: translateY(-40px) scale(1.08); } 12.81% { opacity: 1; transform: translateY(2px) scale(1); } 13.81%, 96% { opacity: 1; transform: none; } 100% { opacity: 0; transform: none; } }
+    .p4 { animation: p4 16s infinite; }
+    @keyframes p4 { 0%, 13.75% { opacity: 0; transform: translateY(-40px) scale(1.08); } 15.62% { opacity: 1; transform: translateY(2px) scale(1); } 16.62%, 96% { opacity: 1; transform: none; } 100% { opacity: 0; transform: none; } }
+    .p5 { animation: p5 16s infinite; }
+    @keyframes p5 { 0%, 16.56% { opacity: 0; transform: translateY(-40px) scale(1.08); } 18.44% { opacity: 1; transform: translateY(2px) scale(1); } 19.44%, 96% { opacity: 1; transform: none; } 100% { opacity: 0; transform: none; } }
+    .p6 { animation: p6 16s infinite; }
+    @keyframes p6 { 0%, 19.38% { opacity: 0; transform: translateY(-40px) scale(1.08); } 21.25% { opacity: 1; transform: translateY(2px) scale(1); } 22.25%, 96% { opacity: 1; transform: none; } 100% { opacity: 0; transform: none; } }
+    .p7 { animation: p7 16s infinite; }
+    @keyframes p7 { 0%, 22.19% { opacity: 0; transform: translateY(-40px) scale(1.08); } 24.06% { opacity: 1; transform: translateY(2px) scale(1); } 25.06%, 96% { opacity: 1; transform: none; } 100% { opacity: 0; transform: none; } }
+
+    /* Lupa passeando pelas provas (só aparece depois que todas chegaram) */
+    .lupa { animation: lupa 16s ease-in-out infinite; }
+    @keyframes lupa {
+      0%, 28.1% { opacity: 0; transform: translate(130px, 170px); }
+      31.1% { opacity: 1; transform: translate(130px, 170px); }
+      42.1% { transform: translate(560px, 160px); }
+      54.1% { transform: translate(760px, 380px); }
+      66.1% { transform: translate(340px, 390px); }
+      94% { opacity: 1; transform: translate(150px, 360px); }
+      100% { opacity: 0; transform: translate(150px, 360px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; } .lupa { opacity: 0; } }
+  </style>
+
+  <!-- MESA DA PERÍCIA -->
+  <rect width="900" height="500" fill="#1f2124" filter="url(#mesa)"/>
+  <rect width="900" height="500" fill="url(#luminaria)"/>
+
+  <!-- título em fita adesiva -->
+  <g transform="rotate(-1.2 450 36)">
+    <rect x="285" y="16" width="330" height="40" fill="#efe7d4" filter="url(#sombra)"/>
+    <rect x="270" y="22" width="34" height="14" fill="#d8cdb2" opacity=".75" transform="rotate(-25 287 29)"/>
+    <rect x="598" y="22" width="34" height="14" fill="#d8cdb2" opacity=".75" transform="rotate(25 615 29)"/>
+    <text x="450" y="44" text-anchor="middle" font-size="19" font-weight="700" fill="#2b2418" letter-spacing="3">PROVAS COLETADAS</text>
+  </g>
+
+  <!-- PROVA A: HTML -->
+  <g transform="translate(40,78) rotate(-3 90.0 89.0)">
+    <g class="saco p0">
+      <!-- saco plástico -->
+      <rect y="0" width="180" height="178" rx="6" fill="#d9e4ea" fill-opacity=".14" stroke="#e8f0f4" stroke-opacity=".45" stroke-width="1.5" filter="url(#sombra)"/>
+      <!-- objeto dentro do saco -->
+      <rect x="22" y="34" width="136" height="92" rx="3" fill="#ece6d8" transform="rotate(4.5 90.0 80)"/>
+      <text x="90.0" y="95" text-anchor="middle" font-size="44" font-weight="700" fill="#e8693f" transform="rotate(4.5 90.0 80)">&lt;/&gt;</text>
+      <text x="90.0" y="116" text-anchor="middle" font-size="12" font-weight="700" fill="#2b2418" transform="rotate(4.5 90.0 80)">HTML</text>
+      <!-- reflexo do plástico -->
+      <path d="M14,158 L99,14 L121,14 L36,158 Z" fill="#ffffff" opacity=".08"/>
+      <!-- lacre vermelho no topo -->
+      <rect width="180" height="18" rx="4" fill="#b3261e"/>
+      <text x="90.0" y="13" text-anchor="middle" font-size="9.5" font-weight="700" fill="#f4e9e2" letter-spacing="1">EVIDÊNCIA · NÃO VIOLAR</text>
+      <!-- etiqueta -->
+      <rect x="10" y="134" width="160" height="36" fill="#f4efe4"/>
+      <text x="18" y="150" font-size="11.5" font-weight="700" fill="#b3261e">PROVA A</text>
+      <text x="18" y="164" font-size="10.5" fill="#4a4034">estrutura das páginas</text>
+    </g>
+  </g>
+  <!-- PROVA B: CSS -->
+  <g transform="translate(250,78) rotate(2 90.0 89.0)">
+    <g class="saco p1">
+      <!-- saco plástico -->
+      <rect y="0" width="180" height="178" rx="6" fill="#d9e4ea" fill-opacity=".14" stroke="#e8f0f4" stroke-opacity=".45" stroke-width="1.5" filter="url(#sombra)"/>
+      <!-- objeto dentro do saco -->
+      <rect x="22" y="34" width="136" height="92" rx="3" fill="#ece6d8" transform="rotate(-3.0 90.0 80)"/>
+      <text x="90.0" y="95" text-anchor="middle" font-size="44" font-weight="700" fill="#4f86e8" transform="rotate(-3.0 90.0 80)">{ }</text>
+      <text x="90.0" y="116" text-anchor="middle" font-size="12" font-weight="700" fill="#2b2418" transform="rotate(-3.0 90.0 80)">CSS</text>
+      <!-- reflexo do plástico -->
+      <path d="M14,158 L99,14 L121,14 L36,158 Z" fill="#ffffff" opacity=".08"/>
+      <!-- lacre vermelho no topo -->
+      <rect width="180" height="18" rx="4" fill="#b3261e"/>
+      <text x="90.0" y="13" text-anchor="middle" font-size="9.5" font-weight="700" fill="#f4e9e2" letter-spacing="1">EVIDÊNCIA · NÃO VIOLAR</text>
+      <!-- etiqueta -->
+      <rect x="10" y="134" width="160" height="36" fill="#f4efe4"/>
+      <text x="18" y="150" font-size="11.5" font-weight="700" fill="#b3261e">PROVA B</text>
+      <text x="18" y="164" font-size="10.5" fill="#4a4034">estilo e animação</text>
+    </g>
+  </g>
+  <!-- PROVA C: JavaScript -->
+  <g transform="translate(460,78) rotate(-1.5 90.0 89.0)">
+    <g class="saco p2">
+      <!-- saco plástico -->
+      <rect y="0" width="180" height="178" rx="6" fill="#d9e4ea" fill-opacity=".14" stroke="#e8f0f4" stroke-opacity=".45" stroke-width="1.5" filter="url(#sombra)"/>
+      <!-- objeto dentro do saco -->
+      <rect x="22" y="34" width="136" height="92" rx="3" fill="#ece6d8" transform="rotate(2.25 90.0 80)"/>
+      <text x="90.0" y="95" text-anchor="middle" font-size="44" font-weight="700" fill="#e8c93f" transform="rotate(2.25 90.0 80)">JS</text>
+      <text x="90.0" y="116" text-anchor="middle" font-size="12" font-weight="700" fill="#2b2418" transform="rotate(2.25 90.0 80)">JAVASCRIPT</text>
+      <!-- reflexo do plástico -->
+      <path d="M14,158 L99,14 L121,14 L36,158 Z" fill="#ffffff" opacity=".08"/>
+      <!-- lacre vermelho no topo -->
+      <rect width="180" height="18" rx="4" fill="#b3261e"/>
+      <text x="90.0" y="13" text-anchor="middle" font-size="9.5" font-weight="700" fill="#f4e9e2" letter-spacing="1">EVIDÊNCIA · NÃO VIOLAR</text>
+      <!-- etiqueta -->
+      <rect x="10" y="134" width="160" height="36" fill="#f4efe4"/>
+      <text x="18" y="150" font-size="11.5" font-weight="700" fill="#b3261e">PROVA C</text>
+      <text x="18" y="164" font-size="10.5" fill="#4a4034">interação no site</text>
+    </g>
+  </g>
+  <!-- PROVA D: Linguagem C -->
+  <g transform="translate(670,78) rotate(3 90.0 89.0)">
+    <g class="saco p3">
+      <!-- saco plástico -->
+      <rect y="0" width="180" height="178" rx="6" fill="#d9e4ea" fill-opacity=".14" stroke="#e8f0f4" stroke-opacity=".45" stroke-width="1.5" filter="url(#sombra)"/>
+      <!-- objeto dentro do saco -->
+      <rect x="22" y="34" width="136" height="92" rx="3" fill="#ece6d8" transform="rotate(-4.5 90.0 80)"/>
+      <text x="90.0" y="95" text-anchor="middle" font-size="44" font-weight="700" fill="#9fb3c8" transform="rotate(-4.5 90.0 80)">C</text>
+      <text x="90.0" y="116" text-anchor="middle" font-size="12" font-weight="700" fill="#2b2418" transform="rotate(-4.5 90.0 80)">LINGUAGEM C</text>
+      <!-- reflexo do plástico -->
+      <path d="M14,158 L99,14 L121,14 L36,158 Z" fill="#ffffff" opacity=".08"/>
+      <!-- lacre vermelho no topo -->
+      <rect width="180" height="18" rx="4" fill="#b3261e"/>
+      <text x="90.0" y="13" text-anchor="middle" font-size="9.5" font-weight="700" fill="#f4e9e2" letter-spacing="1">EVIDÊNCIA · NÃO VIOLAR</text>
+      <!-- etiqueta -->
+      <rect x="10" y="134" width="160" height="36" fill="#f4efe4"/>
+      <text x="18" y="150" font-size="11.5" font-weight="700" fill="#b3261e">PROVA D</text>
+      <text x="18" y="164" font-size="10.5" fill="#4a4034">lógica de programação</text>
+    </g>
+  </g>
+  <!-- PROVA E: Python -->
+  <g transform="translate(40,292) rotate(2.5 90.0 89.0)">
+    <g class="saco p4">
+      <!-- saco plástico -->
+      <rect y="0" width="180" height="178" rx="6" fill="#d9e4ea" fill-opacity=".14" stroke="#e8f0f4" stroke-opacity=".45" stroke-width="1.5" filter="url(#sombra)"/>
+      <!-- objeto dentro do saco -->
+      <rect x="22" y="34" width="136" height="92" rx="3" fill="#ece6d8" transform="rotate(-3.75 90.0 80)"/>
+      <text x="90.0" y="95" text-anchor="middle" font-size="44" font-weight="700" fill="#5b9bd5" transform="rotate(-3.75 90.0 80)">&gt;&gt;&gt;</text>
+      <text x="90.0" y="116" text-anchor="middle" font-size="12" font-weight="700" fill="#2b2418" transform="rotate(-3.75 90.0 80)">PYTHON</text>
+      <!-- reflexo do plástico -->
+      <path d="M14,158 L99,14 L121,14 L36,158 Z" fill="#ffffff" opacity=".08"/>
+      <!-- lacre vermelho no topo -->
+      <rect width="180" height="18" rx="4" fill="#b3261e"/>
+      <text x="90.0" y="13" text-anchor="middle" font-size="9.5" font-weight="700" fill="#f4e9e2" letter-spacing="1">EVIDÊNCIA · NÃO VIOLAR</text>
+      <!-- etiqueta -->
+      <rect x="10" y="134" width="160" height="36" fill="#f4efe4"/>
+      <text x="18" y="150" font-size="11.5" font-weight="700" fill="#b3261e">PROVA E</text>
+      <text x="18" y="164" font-size="10.5" fill="#4a4034">primeiros passos</text>
+    </g>
+  </g>
+  <!-- PROVA F: SQL -->
+  <g transform="translate(250,292) rotate(-2 90.0 89.0)">
+    <g class="saco p5">
+      <!-- saco plástico -->
+      <rect y="0" width="180" height="178" rx="6" fill="#d9e4ea" fill-opacity=".14" stroke="#e8f0f4" stroke-opacity=".45" stroke-width="1.5" filter="url(#sombra)"/>
+      <!-- objeto dentro do saco -->
+      <rect x="22" y="34" width="136" height="92" rx="3" fill="#ece6d8" transform="rotate(3.0 90.0 80)"/>
+      <text x="90.0" y="90" text-anchor="middle" font-size="30" font-weight="700" fill="#e8a33f" transform="rotate(3.0 90.0 80)">SELECT</text>
+      <text x="90.0" y="116" text-anchor="middle" font-size="12" font-weight="700" fill="#2b2418" transform="rotate(3.0 90.0 80)">SQL</text>
+      <!-- reflexo do plástico -->
+      <path d="M14,158 L99,14 L121,14 L36,158 Z" fill="#ffffff" opacity=".08"/>
+      <!-- lacre vermelho no topo -->
+      <rect width="180" height="18" rx="4" fill="#b3261e"/>
+      <text x="90.0" y="13" text-anchor="middle" font-size="9.5" font-weight="700" fill="#f4e9e2" letter-spacing="1">EVIDÊNCIA · NÃO VIOLAR</text>
+      <!-- etiqueta -->
+      <rect x="10" y="134" width="160" height="36" fill="#f4efe4"/>
+      <text x="18" y="150" font-size="11.5" font-weight="700" fill="#b3261e">PROVA F</text>
+      <text x="18" y="164" font-size="10.5" fill="#4a4034">consultas em dados</text>
+    </g>
+  </g>
+  <!-- PROVA G: PostgreSQL -->
+  <g transform="translate(460,292) rotate(1.5 90.0 89.0)">
+    <g class="saco p6">
+      <!-- saco plástico -->
+      <rect y="0" width="180" height="178" rx="6" fill="#d9e4ea" fill-opacity=".14" stroke="#e8f0f4" stroke-opacity=".45" stroke-width="1.5" filter="url(#sombra)"/>
+      <!-- objeto dentro do saco -->
+      <rect x="22" y="34" width="136" height="92" rx="3" fill="#ece6d8" transform="rotate(-2.25 90.0 80)"/>
+      <text x="90.0" y="95" text-anchor="middle" font-size="44" font-weight="700" fill="#6b9bd1" transform="rotate(-2.25 90.0 80)">pg</text>
+      <text x="90.0" y="116" text-anchor="middle" font-size="12" font-weight="700" fill="#2b2418" transform="rotate(-2.25 90.0 80)">POSTGRESQL</text>
+      <!-- reflexo do plástico -->
+      <path d="M14,158 L99,14 L121,14 L36,158 Z" fill="#ffffff" opacity=".08"/>
+      <!-- lacre vermelho no topo -->
+      <rect width="180" height="18" rx="4" fill="#b3261e"/>
+      <text x="90.0" y="13" text-anchor="middle" font-size="9.5" font-weight="700" fill="#f4e9e2" letter-spacing="1">EVIDÊNCIA · NÃO VIOLAR</text>
+      <!-- etiqueta -->
+      <rect x="10" y="134" width="160" height="36" fill="#f4efe4"/>
+      <text x="18" y="150" font-size="11.5" font-weight="700" fill="#b3261e">PROVA G</text>
+      <text x="18" y="164" font-size="10.5" fill="#4a4034">banco de dados</text>
+    </g>
+  </g>
+  <!-- PROVA H: Git &amp; GitHub -->
+  <g transform="translate(670,292) rotate(-3 90.0 89.0)">
+    <g class="saco p7">
+      <!-- saco plástico -->
+      <rect y="0" width="180" height="178" rx="6" fill="#d9e4ea" fill-opacity=".14" stroke="#e8f0f4" stroke-opacity=".45" stroke-width="1.5" filter="url(#sombra)"/>
+      <!-- objeto dentro do saco -->
+      <rect x="22" y="34" width="136" height="92" rx="3" fill="#ece6d8" transform="rotate(4.5 90.0 80)"/>
+      <text x="90.0" y="95" text-anchor="middle" font-size="44" font-weight="700" fill="#f06a4a" transform="rotate(4.5 90.0 80)">git</text>
+      <text x="90.0" y="116" text-anchor="middle" font-size="12" font-weight="700" fill="#2b2418" transform="rotate(4.5 90.0 80)">GIT &amp; GITHUB</text>
+      <!-- reflexo do plástico -->
+      <path d="M14,158 L99,14 L121,14 L36,158 Z" fill="#ffffff" opacity=".08"/>
+      <!-- lacre vermelho no topo -->
+      <rect width="180" height="18" rx="4" fill="#b3261e"/>
+      <text x="90.0" y="13" text-anchor="middle" font-size="9.5" font-weight="700" fill="#f4e9e2" letter-spacing="1">EVIDÊNCIA · NÃO VIOLAR</text>
+      <!-- etiqueta -->
+      <rect x="10" y="134" width="160" height="36" fill="#f4efe4"/>
+      <text x="18" y="150" font-size="11.5" font-weight="700" fill="#b3261e">PROVA H</text>
+      <text x="18" y="164" font-size="10.5" fill="#4a4034">versionamento</text>
+    </g>
+  </g>
+
+  <!-- LUPA -->
+  <g class="lupa">
+    <g transform="rotate(-35)">
+      <rect x="-6" y="44" width="12" height="62" rx="5" fill="#3b2a1c" stroke="#120c07" stroke-width="2"/>
+      <rect x="-8" y="38" width="16" height="12" rx="2" fill="#9aa0a6"/>
+    </g>
+    <circle r="44" fill="url(#lente)"/>
+    <circle r="44" fill="none" stroke="#c9ced3" stroke-width="7"/>
+    <circle r="44" fill="none" stroke="#6d7379" stroke-width="2"/>
+    <path d="M-26,-16 A30,30 0 0 1 -10,-30" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity=".55"/>
+  </g>
+</svg>

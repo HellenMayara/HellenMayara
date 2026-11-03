@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="350" viewBox="0 0 280 350">
+  <!-- ARQUIVO H.M. — CASO 03: Página pessoal -->
+  <defs>
+    <filter id="sombra" x="-10%" y="-10%" width="125%" height="130%">
+      <feDropShadow dx="2" dy="4" stdDeviation="4" flood-color="#000" flood-opacity=".5"/>
+    </filter>
+  </defs>
+  <style>
+    text { font-family: 'Courier New', Courier, monospace; }
+    .centro { transform-box: fill-box; transform-origin: center; }
+    /* blocos "carregando": um brilho passa por cima, como em sites de verdade */
+    .brilho { animation: brilho 1.8s linear infinite; }
+    @keyframes brilho { from { transform: translateX(-120px); } to { transform: translateX(240px); } }
+    /* barra de progresso que nunca termina... porque está em construção */
+    .progresso { transform-box: fill-box; transform-origin: left center; animation: progresso 8s ease-in-out infinite; }
+    @keyframes progresso { 0% { transform: scaleX(.05); } 70%, 100% { transform: scaleX(.62); } }
+    /* fita de construção correndo */
+    .fita { animation: fita 4s linear infinite; }
+    @keyframes fita { to { transform: translateX(-24px); } }
+    /* carimbo batendo uma vez a cada ciclo de 8s */
+    .carimbo { animation: carimbo 8s infinite; }
+    @keyframes carimbo {
+      0%, 8% { opacity: 0; transform: rotate(-12deg) scale(1.8); }
+      11% { opacity: .9; transform: rotate(-12deg) scale(.95); }
+      13%, 100% { opacity: .9; transform: rotate(-12deg) scale(1); }
+    }
+    .seta { animation: seta 1.6s ease-in-out infinite; }
+    @keyframes seta { 50% { transform: translateX(5px); } }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+  </style>
+
+  <!-- pasta do caso -->
+  <rect width="280" height="350" rx="10" fill="#17191c"/>
+  <rect x=".5" y=".5" width="279" height="349" rx="10" fill="none" stroke="#2f3338"/>
+  <text x="20" y="27" font-size="11" font-weight="700" fill="#b3261e" letter-spacing="2">ARQUIVO H.M. · CASO 03</text>
+
+  <!-- foto da cena -->
+  <g filter="url(#sombra)"><rect x="20" y="40" width="240" height="170" fill="#ece6d8"/></g>
+  <defs>
+    <clipPath id="janela"><rect x="40" y="56" width="200" height="140" rx="4"/></clipPath>
+    <linearGradient id="reflexo" x1="0" x2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".7"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="listras" width="24" height="24" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="12" height="24" fill="#e6c22e"/><rect x="12" width="12" height="24" fill="#111"/>
+    </pattern>
+  </defs>
+  <!-- janela de navegador -->
+  <rect x="40" y="56" width="200" height="140" rx="4" fill="#ffffff" stroke="#b9b1a0"/>
+  <rect x="40" y="56" width="200" height="18" rx="4" fill="#d9d3c6"/>
+  <circle cx="50" cy="65" r="3" fill="#d0443a"/><circle cx="60" cy="65" r="3" fill="#e6c22e"/><circle cx="70" cy="65" r="3" fill="#4caf50"/>
+  <rect x="80" y="60" width="120" height="10" rx="5" fill="#f4f1ea"/>
+  <g clip-path="url(#janela)">
+    <g fill="#e2ddd2">
+      <rect x="52" y="84" width="90" height="12" rx="3"/>
+      <rect x="52" y="104" width="176" height="36" rx="3"/>
+      <rect x="52" y="148" width="54" height="34" rx="3"/><rect x="113" y="148" width="54" height="34" rx="3"/><rect x="174" y="148" width="54" height="34" rx="3"/>
+    </g>
+    <rect class="brilho" x="40" y="74" width="80" height="122" fill="url(#reflexo)" opacity=".8"/>
+  </g>
+  <!-- barra de progresso -->
+  <rect x="52" y="188" width="176" height="4" rx="2" fill="#e2ddd2"/>
+  <rect class="progresso" x="52" y="188" width="176" height="4" rx="2" fill="#b3261e"/>
+  <!-- fita de obra atravessando -->
+  <g transform="rotate(-10 140 130)">
+    <g clip-path="url(#janela)"><rect class="fita" x="20" y="118" width="280" height="16" fill="url(#listras)" opacity=".92"/></g>
+  </g>
+
+  <!-- carimbo -->
+  <g class="carimbo centro">
+    <rect x="144" y="172" width="118" height="28" rx="3" fill="#17191c" fill-opacity=".6" stroke="#e0a43a" stroke-width="2.5"/>
+    <text x="203" y="191" text-anchor="middle" font-size="13" font-weight="700" fill="#e0a43a" letter-spacing="1">EM ANDAMENTO</text>
+  </g>
+
+  <!-- ficha -->
+  <text x="20" y="240" font-size="17" font-weight="700" fill="#efe7d4">Página pessoal</text>
+  <text x="20" y="262" font-size="11.5" fill="#a9a399">Site para reunir meus projetos</text><text x="20" y="278" font-size="11.5" fill="#a9a399">e contar um pouco sobre mim.</text>
+  <rect x="20" y="302" width="43" height="20" rx="3" fill="none" stroke="#5b5f66"/><text x="27" y="316" font-size="11" fill="#d8d2c4">HTML</text><rect x="68.8" y="302" width="36" height="20" rx="3" fill="none" stroke="#5b5f66"/><text x="75.8" y="316" font-size="11" fill="#d8d2c4">CSS</text><rect x="110.4" y="302" width="86" height="20" rx="3" fill="none" stroke="#5b5f66"/><text x="117.4" y="316" font-size="11" fill="#d8d2c4">JavaScript</text>
+  <text x="20" y="340" font-size="11" fill="#7d8188">investigação em andamento...</text>
+  <text class="seta" x="250" y="340" font-size="12" fill="#b3261e">→</text>
+</svg>

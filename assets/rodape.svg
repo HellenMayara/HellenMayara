@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="210" viewBox="0 0 900 210">
+  <!--
+    ARQUIVO H.M. — RODAPÉ
+    A lanterna procura no escuro, pegadas atravessam o chão
+    e a máquina de escrever fecha o arquivo. Ciclo de 12s.
+  -->
+  <defs>
+    <radialGradient id="facho" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#fff4d6" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#fff4d6" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="revela1"><rect class="digita1" x="250" y="58" width="400" height="40"/></clipPath>
+    <clipPath id="revela2"><rect class="digita2" x="268" y="104" width="364" height="24"/></clipPath>
+    <!-- uma pegada (sola + calcanhar) -->
+    <g id="pe">
+      <ellipse cx="0" cy="-5" rx="5" ry="8"/>
+      <ellipse cx="0" cy="9" rx="4" ry="4.5"/>
+    </g>
+  </defs>
+
+  <style>
+    text { font-family: 'Courier New', Courier, monospace; }
+
+    /* Lanterna varrendo o escuro */
+    .lanterna { animation: lanterna 6s ease-in-out infinite alternate; }
+    @keyframes lanterna { from { transform: translateX(-320px); } to { transform: translateX(320px); } }
+
+    /* Máquina de escrever: "CASO EM ABERTO..." tem 17 letras */
+    .digita1 { transform-box: fill-box; transform-origin: left center; animation: d1 12s infinite; }
+    @keyframes d1 { 0%, 4% { transform: scaleX(0); animation-timing-function: steps(17, end); }
+                    22%, 96% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
+    /* "continua no próximo commit" tem 26 letras */
+    .digita2 { transform-box: fill-box; transform-origin: left center; animation: d2 12s infinite; }
+    @keyframes d2 { 0%, 26% { transform: scaleX(0); animation-timing-function: steps(26, end); }
+                    44%, 96% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
+
+    .cursor { animation: cursor .8s steps(1) infinite; }
+    @keyframes cursor { 50% { opacity: 0; } }
+
+    /* Pegadas surgindo uma a uma e sumindo */
+    .pegada { opacity: 0; animation: pegada 12s infinite; }
+    @keyframes pegada { 0% { opacity: 0; } 2% { opacity: .55; } 30% { opacity: .55; } 45%, 100% { opacity: 0; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; }
+      .pegada { opacity: .4; }
+    }
+  </style>
+
+  <!-- ESCURO -->
+  <rect width="900" height="210" fill="#0b0c0e"/>
+
+  <!-- facho da lanterna -->
+  <ellipse class="lanterna" cx="450" cy="100" rx="190" ry="120" fill="url(#facho)"/>
+
+  <!-- pegadas atravessando (cada uma com seu atraso, alternando pé esquerdo/direito) -->
+  <g fill="#2a2d31">
+    <use class="pegada" href="#pe" transform="translate(60,172) rotate(80)"  style="animation-delay:0s"/>
+    <use class="pegada" href="#pe" transform="translate(110,186) rotate(100)" style="animation-delay:.35s"/>
+    <use class="pegada" href="#pe" transform="translate(160,172) rotate(80)" style="animation-delay:.7s"/>
+    <use class="pegada" href="#pe" transform="translate(210,186) rotate(100)" style="animation-delay:1.05s"/>
+    <use class="pegada" href="#pe" transform="translate(260,172) rotate(80)" style="animation-delay:1.4s"/>
+    <use class="pegada" href="#pe" transform="translate(310,186) rotate(100)" style="animation-delay:1.75s"/>
+    <use class="pegada" href="#pe" transform="translate(360,172) rotate(80)" style="animation-delay:2.1s"/>
+    <use class="pegada" href="#pe" transform="translate(410,186) rotate(100)" style="animation-delay:2.45s"/>
+    <use class="pegada" href="#pe" transform="translate(460,172) rotate(80)" style="animation-delay:2.8s"/>
+    <use class="pegada" href="#pe" transform="translate(510,186) rotate(100)" style="animation-delay:3.15s"/>
+    <use class="pegada" href="#pe" transform="translate(560,172) rotate(80)" style="animation-delay:3.5s"/>
+    <use class="pegada" href="#pe" transform="translate(610,186) rotate(100)" style="animation-delay:3.85s"/>
+    <use class="pegada" href="#pe" transform="translate(660,172) rotate(80)" style="animation-delay:4.2s"/>
+    <use class="pegada" href="#pe" transform="translate(710,186) rotate(100)" style="animation-delay:4.55s"/>
+    <use class="pegada" href="#pe" transform="translate(760,172) rotate(80)" style="animation-delay:4.9s"/>
+    <use class="pegada" href="#pe" transform="translate(810,186) rotate(100)" style="animation-delay:5.25s"/>
+  </g>
+
+  <!-- linha de "fim de documento" -->
+  <line x1="40" y1="30" x2="860" y2="30" stroke="#2f3338" stroke-dasharray="6 6"/>
+  <text x="450" y="22" text-anchor="middle" font-size="10" fill="#5b5f66" letter-spacing="3">FIM DO ARQUIVO H.M.</text>
+
+  <!-- texto datilografado -->
+  <g clip-path="url(#revela1)">
+    <text x="250" y="90" font-size="34" font-weight="700" fill="#e8e2d4" textLength="400" lengthAdjust="spacingAndGlyphs">CASO EM ABERTO...</text>
+  </g>
+  <rect class="cursor" x="656" y="62" width="4" height="32" fill="#e8e2d4"/>
+  <g clip-path="url(#revela2)">
+    <text x="268" y="122" font-size="17" fill="#b3261e" textLength="364" lengthAdjust="spacingAndGlyphs">continua no próximo commit</text>
+  </g>
+
+  <text x="450" y="150" text-anchor="middle" font-size="10.5" fill="#5b5f66" letter-spacing="1">Hellen Mayara · Rio de Janeiro · 2026</text>
+</svg>

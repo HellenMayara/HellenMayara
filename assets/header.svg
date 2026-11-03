@@ -1,0 +1,323 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="300" viewBox="0 0 900 300">
+  <!--
+    ARQUIVO H.M. — cabeçalho animado
+    Clima: madrugada, neblina, poste falhando, fita de isolamento.
+    Tudo que se mexe é CSS (@keyframes).
+  -->
+  <defs>
+    <!-- Céu da madrugada: preto azulado -->
+    <linearGradient id="ceu" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#07080a"/>
+      <stop offset=".7" stop-color="#15181c"/>
+      <stop offset="1" stop-color="#1e2226"/>
+    </linearGradient>
+
+    <!-- Cone de luz do poste -->
+    <linearGradient id="cone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f0b55a" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#f0b55a" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Reflexo da luz no asfalto molhado -->
+    <radialGradient id="reflexo" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#f0b55a" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#f0b55a" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Escurecimento nas bordas (vinheta) -->
+    <radialGradient id="vinheta" cx=".5" cy=".5" r=".75">
+      <stop offset=".55" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".75"/>
+    </radialGradient>
+
+    <filter id="neblina" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Granulado de filme antigo -->
+    <filter id="granulado">
+      <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/>
+      <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .5 0"/>
+    </filter>
+
+    <!-- "Janelinhas" que revelam o texto aos poucos (efeito máquina de escrever) -->
+    <clipPath id="revela-titulo">
+      <rect class="digita-titulo" x="40" y="40" width="390" height="70"/>
+    </clipPath>
+    <clipPath id="revela-sub">
+      <rect class="digita-sub" x="42" y="112" width="351" height="30"/>
+    </clipPath>
+
+    <!-- Recorte da fita de isolamento -->
+    <clipPath id="recorte-fita">
+      <rect x="-40" y="0" width="980" height="24"/>
+    </clipPath>
+  </defs>
+
+  <style>
+    .esquerda { transform-box: fill-box; transform-origin: left center; }
+    .centro   { transform-box: fill-box; transform-origin: center; }
+
+    /* ── Máquina de escrever ──
+       steps(12) = o título tem 12 letras, então a revelação acontece em 12 "saltos".
+       O ciclo todo dura 10s e recomeça. */
+    .digita-titulo { animation: titulo 10s infinite; }
+    @keyframes titulo {
+      0%        { transform: scaleX(0); animation-timing-function: steps(12, end); }
+      22%, 100% { transform: scaleX(1); }
+    }
+    .digita-sub { animation: sub 10s infinite; }
+    @keyframes sub {
+      0%, 24%   { transform: scaleX(0); animation-timing-function: steps(27, end); }
+      50%, 100% { transform: scaleX(1); }
+    }
+
+    /* Cursor acompanha as letras do título e depois fica piscando */
+    .cursor { animation: anda 10s infinite, cursor .8s steps(1) infinite; }
+    @keyframes anda {
+      0%        { transform: translateX(0); animation-timing-function: steps(12, end); }
+      22%, 100% { transform: translateX(390px); }
+    }
+    @keyframes cursor { 50% { opacity: 0; } }
+
+    /* Carimbo CONFIDENCIAL "batendo" no papel depois da digitação */
+    .carimbo { animation: carimbo 10s infinite; }
+    @keyframes carimbo {
+      0%, 54% { opacity: 0; transform: rotate(-8deg) scale(1.8); }
+      58%     { opacity: .9; transform: rotate(-8deg) scale(.95); }
+      61%, 96%{ opacity: .9; transform: rotate(-8deg) scale(1); }
+      100%    { opacity: 0; transform: rotate(-8deg) scale(1); }
+    }
+
+    /* Poste de luz falhando de forma irregular */
+    .falha { animation: falha 5s infinite; }
+    @keyframes falha {
+      0%, 100% { opacity: 1; }
+      40% { opacity: 1; } 41% { opacity: .2; } 42% { opacity: 1; }
+      44% { opacity: .1; } 47% { opacity: 1; }
+      78% { opacity: 1; } 79% { opacity: .3; } 80% { opacity: 1; }
+    }
+
+    /* ── A perseguição (ciclo de 16s) ──
+       0s  → 6s    as duas pessoas andam pela rua
+       6s  → 8s    param; a de rabo de cavalo vira, vê a faca e leva um susto
+       8s  → ~10,5s as duas saem correndo (quem tem a faca é mais rápido)
+       depois      rua vazia até recomeçar
+
+       Cada pessoa tem TRÊS "poses" desenhadas: andando, parada e correndo.
+       Um relógio (opacity) mostra só a pose certa em cada momento. */
+    .pivo { transform-box: view-box; transform-origin: 0 0; }
+    .meio { transform-box: fill-box; transform-origin: center; }
+
+    /* Trajeto pela rua: andar, parar, correr */
+    .trajeto-ela { animation: trajetoEla 16s linear infinite; }
+    @keyframes trajetoEla {
+      0%           { transform: translateX(-60px); }
+      37.5%, 50%   { transform: translateX(560px); }   /* para sob o poste */
+      63%, 100%    { transform: translateX(1000px); }  /* correu para fora */
+    }
+    .trajeto-ele { animation: trajetoEle 16s linear infinite; }
+    @keyframes trajetoEle {
+      0%            { transform: translateX(-230px); }
+      37.5%, 50.5%  { transform: translateX(390px); }  /* para no escuro */
+      67%, 100%     { transform: translateX(1000px); }
+    }
+
+    /* Relógio das poses */
+    .pose-anda          { animation: poseAnda 16s infinite; }
+    .pose-parada        { animation: poseParadaEla 16s infinite; }
+    .pose-corre         { animation: poseCorreEla 16s infinite; }
+    .ele .pose-parada   { animation-name: poseParadaEle; }
+    .ele .pose-corre    { animation-name: poseCorreEle; }
+    @keyframes poseAnda      { 0%, 37.4% { opacity: 1; } 37.5%, 100% { opacity: 0; } }
+    @keyframes poseParadaEla { 0%, 37.4% { opacity: 0; } 37.5%, 49.9% { opacity: 1; } 50%, 100% { opacity: 0; } }
+    @keyframes poseCorreEla  { 0%, 49.9% { opacity: 0; } 50%, 100% { opacity: 1; } }
+    @keyframes poseParadaEle { 0%, 37.4% { opacity: 0; } 37.5%, 50.4% { opacity: 1; } 50.5%, 100% { opacity: 0; } }
+    @keyframes poseCorreEle  { 0%, 50.4% { opacity: 0; } 50.5%, 100% { opacity: 1; } }
+
+    /* Ela vira para trás (espelhando o desenho), olha... e dá um pulinho de susto */
+    .vira { animation: vira 16s infinite; }
+    @keyframes vira {
+      0%, 39%   { transform: scaleX(1); }
+      39.5%, 46%{ transform: scaleX(-1); }
+      46.5%     { transform: scaleX(1) translateY(0); }
+      47.5%     { transform: scaleX(1) translateY(-6px); }
+      48.5%,100%{ transform: scaleX(1) translateY(0); }
+    }
+
+    /* ANDAR: coxa gira no quadril, canela dobra no joelho só com o pé no ar */
+    .a-sobe   { animation: aSobe .6s linear infinite; }
+    @keyframes aSobe { 0%, 50%, 100% { transform: translateY(0); } 25%, 75% { transform: translateY(-2px); } }
+    .a-coxa   { animation: aCoxa .6s linear infinite; }
+    @keyframes aCoxa { 0%, 100% { transform: rotate(-25deg); } 50% { transform: rotate(25deg); } }
+    .a-canela { animation: aCanela .6s ease-in-out infinite; }
+    @keyframes aCanela { 0%, 50%, 100% { transform: rotate(0); } 75% { transform: rotate(50deg); } }
+    .a-braco  { animation: aBraco .6s linear infinite; }
+    @keyframes aBraco { 0%, 100% { transform: rotate(22deg); } 50% { transform: rotate(-22deg); } }
+    .a-faca   { animation: aFaca .6s ease-in-out infinite; }
+    @keyframes aFaca { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
+
+    /* CORRER: passos maiores, joelho dobra mais, corpo inclinado, ciclo mais rápido */
+    .c-sobe   { animation: cSobe .45s linear infinite; }
+    @keyframes cSobe { 0%, 50%, 100% { transform: translateY(0); } 25%, 75% { transform: translateY(-4px); } }
+    .c-coxa   { animation: cCoxa .45s linear infinite; }
+    @keyframes cCoxa { 0%, 100% { transform: rotate(-40deg); } 50% { transform: rotate(40deg); } }
+    .c-canela { animation: cCanela .45s ease-in-out infinite; }
+    @keyframes cCanela { 0%, 50%, 100% { transform: rotate(5deg); } 75% { transform: rotate(95deg); } }
+    .c-braco  { animation: cBraco .45s linear infinite; }
+    @keyframes cBraco { 0%, 100% { transform: rotate(45deg); } 50% { transform: rotate(-45deg); } }
+    /* quem persegue corre ainda mais rápido */
+    .ele .c-sobe, .ele .c-coxa, .ele .c-canela, .ele .c-braco { animation-duration: .4s; }
+
+    /* A perna/braço de trás fazem o mesmo movimento com meio ciclo de atraso */
+    .tras .a-coxa, .tras .a-canela, .tras .a-braco { animation-delay: -.3s; }
+    .tras .c-coxa, .tras .c-canela, .tras .c-braco { animation-delay: -.225s; }
+    .ele .tras .c-coxa, .ele .tras .c-canela, .ele .tras .c-braco { animation-delay: -.2s; }
+
+    /* Brilho na lâmina */
+    .lamina { animation: lamina 3s infinite; }
+    @keyframes lamina { 0%, 85%, 100% { fill: #6d747b; } 90% { fill: #e8eef2; } }
+
+    /* Neblina deslizando */
+    .nevoa { animation: nevoa 18s ease-in-out infinite alternate; }
+    .nevoa.b { animation-duration: 25s; animation-direction: alternate-reverse; }
+    @keyframes nevoa { from { transform: translateX(-60px); } to { transform: translateX(60px); } }
+
+    /* Texto da fita correndo: anda exatamente 1 repetição (420px) e recomeça */
+    .fita-texto { animation: fita 9s linear infinite; }
+    @keyframes fita { to { transform: translateX(-420px); } }
+
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+  </style>
+
+  <!-- 1. CÉU -->
+  <rect width="900" height="300" fill="url(#ceu)"/>
+
+  <!-- 2. CIDADE AO FUNDO, quase sumindo na neblina -->
+  <path fill="#1b1e22" d="M0,230 V200 H50 V185 H95 V205 H150 V178 H190 V200 H260 V190 H320 V210
+    H400 V195 H460 V205 H520 V188 H560 V230 Z"/>
+
+  <!-- 3. PRÉDIO DA DIREITA -->
+  <g fill="#0b0c0e">
+    <rect x="690" y="90" width="210" height="160"/>
+    <polygon points="680,92 795,55 910,92"/>
+  </g>
+  <g fill="#1a1d21">
+    <rect x="715" y="115" width="26" height="36"/><rect x="760" y="115" width="26" height="36"/>
+    <rect x="850" y="115" width="26" height="36"/><rect x="715" y="180" width="26" height="36"/>
+    <rect x="760" y="180" width="26" height="36"/><rect x="850" y="180" width="26" height="36"/>
+  </g>
+  <!-- A única janela acesa -->
+  <rect x="805" y="115" width="26" height="36" fill="#d9a24a" opacity=".85"/>
+
+  <!-- 4. POSTE DE LUZ -->
+  <g class="falha">
+    <polygon points="566,80 590,80 650,250 506,250" fill="url(#cone)"/>
+    <ellipse cx="578" cy="262" rx="110" ry="16" fill="url(#reflexo)"/>
+    <ellipse cx="578" cy="79" rx="13" ry="4" fill="#ffd894" filter="url(#glow)"/>
+  </g>
+  <g fill="#0b0c0e">
+    <rect x="575" y="70" width="6" height="190"/>
+    <path d="M560,80 Q578,62 596,80 Z"/>
+    <rect x="570" y="255" width="16" height="6"/>
+  </g>
+
+  <!-- 5. RUA -->
+  <rect y="250" width="900" height="50" fill="#0e1012"/>
+
+  <!-- 5b. A PERSEGUIÇÃO (só silhuetas)
+       O ponto (0,0) de cada peça é a "articulação": quadril, joelho ou ombro.
+       É em volta dele que cada parte gira. -->
+  <!-- quem segue, de capuz e com a faca -->
+  <g class="ele trajeto-ele">
+    <g transform="translate(0,211) scale(1.25)">
+      <g fill="none" stroke="#030304" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round">
+        <g class="pose-anda"><g class="a-sobe">
+          <g class="tras"><g class="a-coxa pivo"><line x1="0" y1="0" x2="0" y2="15"/><g transform="translate(0,15)"><g class="a-canela pivo"><line x1="0" y1="0" x2="0" y2="14"/><line x1="0" y1="14" x2="5" y2="14"/></g></g></g></g>
+          <g class="tras" transform="translate(3,-16)"><polyline class="a-braco pivo" points="0,0 -1,10 3,18" stroke-width="4.5"/></g>
+          <line x1="0" y1="0" x2="3" y2="-19" stroke-width="10"/><circle cx="5" cy="-27" r="6.5" fill="#030304" stroke="none"/><path d="M-1,-27 Q4,-39 10,-27 Z" fill="#030304" stroke="none"/>
+          <g class=""><g class="a-coxa pivo"><line x1="0" y1="0" x2="0" y2="15"/><g transform="translate(0,15)"><g class="a-canela pivo"><line x1="0" y1="0" x2="0" y2="14"/><line x1="0" y1="14" x2="5" y2="14"/></g></g></g></g>
+          <g transform="translate(3,-16)"><g class="a-faca pivo"><polyline points="0,0 3,9 9,12" stroke-width="4.5"/><line x1="9" y1="10" x2="9" y2="15" stroke-width="3.5"/><polygon class="lamina" points="7.8,15 10.2,15 9.6,27 9,28.5" stroke="none"/></g></g>
+        </g></g>
+        <g class="pose-parada"><polyline points="0,0 -2,15 -2,29 3,29"/><polyline points="0,0 2,15 2,29 7,29"/>
+          <polyline transform="translate(2,-16)" points="0,0 -2,10 -2,18" stroke-width="4.5"/>
+          <line x1="0" y1="0" x2="1" y2="-19" stroke-width="10"/><circle cx="2" cy="-27" r="6.5" fill="#030304" stroke="none"/><path d="M-4,-27 Q1,-39 7,-27 Z" fill="#030304" stroke="none"/>
+          <g transform="translate(2,-16)"><g class=" pivo"><polyline points="0,0 3,9 9,12" stroke-width="4.5"/><line x1="9" y1="10" x2="9" y2="15" stroke-width="3.5"/><polygon class="lamina" points="7.8,15 10.2,15 9.6,27 9,28.5" stroke="none"/></g></g></g>
+        <g class="pose-corre"><g class="c-sobe">
+          <g class="tras"><g class="c-coxa pivo"><line x1="0" y1="0" x2="0" y2="15"/><g transform="translate(0,15)"><g class="c-canela pivo"><line x1="0" y1="0" x2="0" y2="14"/><line x1="0" y1="14" x2="5" y2="14"/></g></g></g></g>
+          <g class="tras" transform="translate(6,-14)"><polyline class="c-braco pivo" points="0,0 -3,8 4,12" stroke-width="4.5"/></g>
+          <line x1="0" y1="0" x2="7" y2="-17" stroke-width="10"/><circle cx="10" cy="-25" r="6.5" fill="#030304" stroke="none"/><path d="M4,-25 Q9,-37 15,-25 Z" fill="#030304" stroke="none"/>
+          <g class=""><g class="c-coxa pivo"><line x1="0" y1="0" x2="0" y2="15"/><g transform="translate(0,15)"><g class="c-canela pivo"><line x1="0" y1="0" x2="0" y2="14"/><line x1="0" y1="14" x2="5" y2="14"/></g></g></g></g>
+          <g transform="translate(6,-14)"><polyline points="0,0 5,-8 8,-17" stroke-width="4.5"/><line x1="8" y1="-20" x2="8" y2="-14" stroke-width="3.5"/><polygon class="lamina" points="6.8,-14 9.2,-14 8.6,-2 8,-0.5" stroke="none"/></g>
+        </g></g>
+      </g>
+    </g>
+  </g>
+  <!-- quem está sendo seguida -->
+  <g class="ela trajeto-ela">
+    <g transform="translate(0,211) scale(1.25)">
+      <g fill="none" stroke="#030304" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round">
+        <g class="pose-anda"><g class="a-sobe">
+          <g class="tras"><g class="a-coxa pivo"><line x1="0" y1="0" x2="0" y2="15"/><g transform="translate(0,15)"><g class="a-canela pivo"><line x1="0" y1="0" x2="0" y2="14"/><line x1="0" y1="14" x2="5" y2="14"/></g></g></g></g>
+          <g class="tras" transform="translate(3,-16)"><polyline class="a-braco pivo" points="0,0 -1,10 3,18" stroke-width="4.5"/></g>
+          <line x1="0" y1="0" x2="3" y2="-19" stroke-width="10"/><circle cx="5" cy="-27" r="6.5" fill="#030304" stroke="none"/><path d="M1,-31 Q-6,-30 -7,-22" stroke-width="3.5"/>
+          <g class=""><g class="a-coxa pivo"><line x1="0" y1="0" x2="0" y2="15"/><g transform="translate(0,15)"><g class="a-canela pivo"><line x1="0" y1="0" x2="0" y2="14"/><line x1="0" y1="14" x2="5" y2="14"/></g></g></g></g>
+          <g transform="translate(3,-16)"><polyline class='a-braco pivo' points='0,0 -1,10 3,18' stroke-width='4.5'/></g>
+        </g></g>
+        <g class="pose-parada"><g class="vira meio"><polyline points="0,0 -2,15 -2,29 3,29"/><polyline points="0,0 2,15 2,29 7,29"/>
+          <polyline transform="translate(2,-16)" points="0,0 -2,10 -2,18" stroke-width="4.5"/>
+          <line x1="0" y1="0" x2="1" y2="-19" stroke-width="10"/><circle cx="2" cy="-27" r="6.5" fill="#030304" stroke="none"/><path d="M-2,-31 Q-9,-30 -10,-22" stroke-width="3.5"/>
+          <polyline transform="translate(2,-16)" points="0,0 0,10 1,18" stroke-width="4.5"/></g></g>
+        <g class="pose-corre"><g class="c-sobe">
+          <g class="tras"><g class="c-coxa pivo"><line x1="0" y1="0" x2="0" y2="15"/><g transform="translate(0,15)"><g class="c-canela pivo"><line x1="0" y1="0" x2="0" y2="14"/><line x1="0" y1="14" x2="5" y2="14"/></g></g></g></g>
+          <g class="tras" transform="translate(6,-14)"><polyline class="c-braco pivo" points="0,0 -3,8 4,12" stroke-width="4.5"/></g>
+          <line x1="0" y1="0" x2="7" y2="-17" stroke-width="10"/><circle cx="10" cy="-25" r="6.5" fill="#030304" stroke="none"/><path d="M6,-29 Q-1,-28 -2,-20" stroke-width="3.5"/>
+          <g class=""><g class="c-coxa pivo"><line x1="0" y1="0" x2="0" y2="15"/><g transform="translate(0,15)"><g class="c-canela pivo"><line x1="0" y1="0" x2="0" y2="14"/><line x1="0" y1="14" x2="5" y2="14"/></g></g></g></g>
+          <g transform="translate(6,-14)"><polyline class="c-braco pivo" points="0,0 -3,8 4,12" stroke-width="4.5"/></g>
+        </g></g>
+      </g>
+    </g>
+  </g>
+
+  <!-- 6. NEBLINA -->
+  <g filter="url(#neblina)" fill="#5a6066" opacity=".35">
+    <ellipse class="nevoa"   cx="200" cy="245" rx="260" ry="26"/>
+    <ellipse class="nevoa b" cx="640" cy="240" rx="300" ry="22"/>
+  </g>
+
+  <!-- 7. FITA DE ISOLAMENTO (levemente torta) -->
+  <g transform="translate(0,254) rotate(-2.5 450 12)">
+    <rect x="-40" y="0" width="980" height="24" fill="#e6c22e"/>
+    <g clip-path="url(#recorte-fita)">
+      <text class="fita-texto" x="0" y="17" font-family="'Arial Black', Arial, sans-serif" font-weight="900"
+            font-size="13" fill="#111" textLength="1680" lengthAdjust="spacing">NÃO ULTRAPASSE · ÁREA EM DESENVOLVIMENTO · NÃO ULTRAPASSE · ÁREA EM DESENVOLVIMENTO · NÃO ULTRAPASSE · ÁREA EM DESENVOLVIMENTO · NÃO ULTRAPASSE · ÁREA EM DESENVOLVIMENTO ·</text>
+    </g>
+  </g>
+
+  <!-- 8. TÍTULO em máquina de escrever -->
+  <g clip-path="url(#revela-titulo)">
+    <text x="40" y="95" font-family="'Courier New', Courier, monospace" font-weight="700" font-size="52"
+          fill="#e8e2d4" textLength="390" lengthAdjust="spacingAndGlyphs">ARQUIVO H.M.</text>
+  </g>
+  <rect class="cursor" x="42" y="58" width="4" height="42" fill="#e8e2d4"/>
+
+  <g clip-path="url(#revela-sub)">
+    <text x="42" y="132" font-family="'Courier New', Courier, monospace" font-size="18"
+          fill="#9aa1a8" textLength="351" lengthAdjust="spacingAndGlyphs">Caso nº 001 · Hellen Mayara</text>
+  </g>
+
+  <!-- 9. CARIMBO -->
+  <g class="carimbo centro">
+    <rect x="288" y="141" width="194" height="32" rx="3" fill="none" stroke="#b3261e" stroke-width="3"/>
+    <text x="385" y="163" text-anchor="middle" font-family="'Courier New', Courier, monospace" font-weight="700"
+          font-size="18" fill="#b3261e" letter-spacing="2">CONFIDENCIAL</text>
+  </g>
+
+  <!-- 10. ACABAMENTO: vinheta + granulado de filme -->
+  <rect width="900" height="300" fill="url(#vinheta)"/>
+  <rect width="900" height="300" filter="url(#granulado)" opacity=".06"/>
+</svg>

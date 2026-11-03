@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="350" viewBox="0 0 280 350">
+  <!-- ARQUIVO H.M. — CASO 01: Calculadora -->
+  <defs>
+    <filter id="sombra" x="-10%" y="-10%" width="125%" height="130%">
+      <feDropShadow dx="2" dy="4" stdDeviation="4" flood-color="#000" flood-opacity=".5"/>
+    </filter>
+  </defs>
+  <style>
+    text { font-family: 'Courier New', Courier, monospace; }
+    .centro { transform-box: fill-box; transform-origin: center; }
+    /* tela: cada texto aparece só na sua fatia do ciclo */
+    .t0 { opacity: 0; animation: t0 8s steps(1) infinite; }
+    @keyframes t0 { 0% { opacity: 1; } 18% { opacity: 0; } }
+    .t1 { opacity: 0; animation: t1 8s steps(1) infinite; }
+    @keyframes t1 { 18% { opacity: 1; } 36% { opacity: 0; } }
+    .t2 { opacity: 0; animation: t2 8s steps(1) infinite; }
+    @keyframes t2 { 36% { opacity: 1; } 54% { opacity: 0; } }
+    .t3 { opacity: 0; animation: t3 8s steps(1) infinite; }
+    @keyframes t3 { 54% { opacity: 1; } 100% { opacity: 0; } }
+    /* tecla acesa por um instante */
+    .k7 { animation: k7 8s infinite; }
+    @keyframes k7 { 0%, 4%, 10%, 100% { fill: #3a3e44; } 6%, 8% { fill: #b3261e; } }
+    .kmais { animation: kmais 8s infinite; }
+    @keyframes kmais { 0%, 22%, 28%, 100% { fill: #3a3e44; } 24%, 26% { fill: #b3261e; } }
+    .k5 { animation: k5 8s infinite; }
+    @keyframes k5 { 0%, 40%, 46%, 100% { fill: #3a3e44; } 42%, 44% { fill: #b3261e; } }
+    .kigual { animation: kigual 8s infinite; }
+    @keyframes kigual { 0%, 58%, 64%, 100% { fill: #3a3e44; } 60%, 62% { fill: #b3261e; } }
+    /* carimbo batendo uma vez a cada ciclo de 8s */
+    .carimbo { animation: carimbo 8s infinite; }
+    @keyframes carimbo {
+      0%, 8% { opacity: 0; transform: rotate(-12deg) scale(1.8); }
+      11% { opacity: .9; transform: rotate(-12deg) scale(.95); }
+      13%, 100% { opacity: .9; transform: rotate(-12deg) scale(1); }
+    }
+    .seta { animation: seta 1.6s ease-in-out infinite; }
+    @keyframes seta { 50% { transform: translateX(5px); } }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+  </style>
+
+  <!-- pasta do caso -->
+  <rect width="280" height="350" rx="10" fill="#17191c"/>
+  <rect x=".5" y=".5" width="279" height="349" rx="10" fill="none" stroke="#2f3338"/>
+  <text x="20" y="27" font-size="11" font-weight="700" fill="#b3261e" letter-spacing="2">ARQUIVO H.M. · CASO 01</text>
+
+  <!-- foto da cena -->
+  <g filter="url(#sombra)"><rect x="20" y="40" width="240" height="170" fill="#ece6d8"/></g>
+  <!-- calculadora desenhada -->
+  <g transform="rotate(-4 140 125)">
+    <rect x="84" y="52" width="112" height="156" rx="10" fill="#24272b" stroke="#0e0f11" stroke-width="2"/>
+    <rect x="92" y="62" width="96" height="26" rx="3" fill="#9fb59a"/>
+    <g font-size="17" font-weight="700" fill="#1d2a1b" text-anchor="end">
+      <text class="t0" x="183" y="81">7</text><text class="t1" x="183" y="81">7+</text><text class="t2" x="183" y="81">7+5</text><text class="t3" x="183" y="81">12</text>
+    </g>
+    <rect class="k7" x="92" y="94" width="22" height="18" rx="3" fill="#3a3e44"/><text x="103" y="107" text-anchor="middle" font-size="11" fill="#e6e1d6">7</text><rect class="" x="118" y="94" width="22" height="18" rx="3" fill="#3a3e44"/><text x="129" y="107" text-anchor="middle" font-size="11" fill="#e6e1d6">8</text><rect class="" x="144" y="94" width="22" height="18" rx="3" fill="#3a3e44"/><text x="155" y="107" text-anchor="middle" font-size="11" fill="#e6e1d6">9</text><rect class="" x="170" y="94" width="22" height="18" rx="3" fill="#3a3e44"/><text x="181" y="107" text-anchor="middle" font-size="11" fill="#e6e1d6">÷</text><rect class="" x="92" y="116" width="22" height="18" rx="3" fill="#3a3e44"/><text x="103" y="129" text-anchor="middle" font-size="11" fill="#e6e1d6">4</text><rect class="k5" x="118" y="116" width="22" height="18" rx="3" fill="#3a3e44"/><text x="129" y="129" text-anchor="middle" font-size="11" fill="#e6e1d6">5</text><rect class="" x="144" y="116" width="22" height="18" rx="3" fill="#3a3e44"/><text x="155" y="129" text-anchor="middle" font-size="11" fill="#e6e1d6">6</text><rect class="" x="170" y="116" width="22" height="18" rx="3" fill="#3a3e44"/><text x="181" y="129" text-anchor="middle" font-size="11" fill="#e6e1d6">×</text><rect class="" x="92" y="138" width="22" height="18" rx="3" fill="#3a3e44"/><text x="103" y="151" text-anchor="middle" font-size="11" fill="#e6e1d6">1</text><rect class="" x="118" y="138" width="22" height="18" rx="3" fill="#3a3e44"/><text x="129" y="151" text-anchor="middle" font-size="11" fill="#e6e1d6">2</text><rect class="" x="144" y="138" width="22" height="18" rx="3" fill="#3a3e44"/><text x="155" y="151" text-anchor="middle" font-size="11" fill="#e6e1d6">3</text><rect class="" x="170" y="138" width="22" height="18" rx="3" fill="#3a3e44"/><text x="181" y="151" text-anchor="middle" font-size="11" fill="#e6e1d6">−</text><rect class="" x="92" y="160" width="22" height="18" rx="3" fill="#3a3e44"/><text x="103" y="173" text-anchor="middle" font-size="11" fill="#e6e1d6">0</text><rect class="" x="118" y="160" width="22" height="18" rx="3" fill="#3a3e44"/><text x="129" y="173" text-anchor="middle" font-size="11" fill="#e6e1d6">.</text><rect class="kigual" x="144" y="160" width="22" height="18" rx="3" fill="#3a3e44"/><text x="155" y="173" text-anchor="middle" font-size="11" fill="#e6e1d6">=</text><rect class="kmais" x="170" y="160" width="22" height="18" rx="3" fill="#3a3e44"/><text x="181" y="173" text-anchor="middle" font-size="11" fill="#e6e1d6">+</text>
+  </g>
+
+  <!-- carimbo -->
+  <g class="carimbo centro">
+    <rect x="144" y="172" width="118" height="28" rx="3" fill="#17191c" fill-opacity=".6" stroke="#d0443a" stroke-width="2.5"/>
+    <text x="203" y="191" text-anchor="middle" font-size="13" font-weight="700" fill="#d0443a" letter-spacing="1">ENCERRADO</text>
+  </g>
+
+  <!-- ficha -->
+  <text x="20" y="240" font-size="17" font-weight="700" fill="#efe7d4">Calculadora</text>
+  <text x="20" y="262" font-size="11.5" fill="#a9a399">As quatro operações, feita para</text><text x="20" y="278" font-size="11.5" fill="#a9a399">praticar DOM e eventos em JS.</text>
+  <rect x="20" y="302" width="43" height="20" rx="3" fill="none" stroke="#5b5f66"/><text x="27" y="316" font-size="11" fill="#d8d2c4">HTML</text><rect x="68.8" y="302" width="36" height="20" rx="3" fill="none" stroke="#5b5f66"/><text x="75.8" y="316" font-size="11" fill="#d8d2c4">CSS</text><rect x="110.4" y="302" width="86" height="20" rx="3" fill="none" stroke="#5b5f66"/><text x="117.4" y="316" font-size="11" fill="#d8d2c4">JavaScript</text>
+  <text x="20" y="340" font-size="11" fill="#7d8188">clique para abrir o caso</text>
+  <text class="seta" x="250" y="340" font-size="12" fill="#b3261e">→</text>
+</svg>
