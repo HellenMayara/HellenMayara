@@ -27,6 +27,9 @@
   <a href="https://github.com/HellenMayara/conversor-de-moedas"><img src="./assets/caso-conversor.svg" width="380" alt="Caso 03: Conversor de moedas"/></a>
   <img src="./assets/caso-portfolio.svg" width="380" alt="Caso 04: Página pessoal, em andamento"/>
 </p>
+<p align="center">
+  <a href="https://github.com/HellenMayara/analisador-avaliacoes-ia"><img src="./assets/caso-analisador.svg" width="380" alt="Caso 05: Analisador de avaliações com IA"/></a>
+</p>
 
 <!-- 🔬 RELATÓRIO DA PERÍCIA (gerado sozinho pelo GitHub Actions, ver .github/workflows/pericia.yml) -->
 <p align="center">
